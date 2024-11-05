@@ -24,7 +24,7 @@ app.get("/luck", (req, res) => {
   if( num==1 ) luck = '大吉';
   else if( num==2 ) luck = '中吉';
   console.log( 'あなたの運勢は' + luck + 'です' );
-  res.render( 'luck', {number:num, luck:luck} );
+  res.render( 'luck', {number:num, luck:luck} );//ejsfileを選択するもん
 });
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
