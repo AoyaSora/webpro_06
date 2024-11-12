@@ -10,12 +10,28 @@
     <p>判定：<%= judgement %></p>
     <p>現在<%= total %>試合中<%= win %>勝しています．</p>
     <hr>
+    <form action="/luck">
+        <input type="hidden" name="win" value="<%= win %>">
+        <input type="hidden" name="total" value="<%= total %>">
+        <input type="submit" value="運勢">
+    </form>  
+    <form action="/prediction">
+        <input type="hidden" name="win" value="<%= win %>">
+        <input type="hidden" name="total" value="<%= total %>">
+        <input type="submit" value="予想">
+    </form>       
     <form action="/janken">
-        <input type="text" name="hand" required>
+        <input type="radio" name="hand" id="radio1" value="1">
+        <label for="radio1">グー</label><br>
+        <input type="radio" name="hand" id="radio2" value="2">
+        <label for="radio2">チョキ</label><br>
+        <input type="radio" name="hand" id="radio3" value="3">
+        <label for="radio3">パー</label><br>
+        
         <label for="hand">次は何を出す？</label>
         <input type="hidden" name="win" value="<%= win %>">
         <input type="hidden" name="total" value="<%= total %>">
         <input type="submit" value="じゃんけん ポン">
-    </form>   
+    </form>  
 </body>
 </html>

@@ -2,12 +2,12 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>おみくじ</title>
+    <title>予想</title>
 </head>
 <body>
-    <p>あなたの今日の運勢は<%= luck %>です．</p>
-    <!-- <p>デバッグ用：<%= number %></p> -->
-    <form action="/janken"> <!-- サーバに送る内容 -->
+    <p>あなたの勝率は<%= rate %>%です．</p>
+    <p>予想：<%= judge %></p>
+    <form action="/janken">  
         <input type="hidden" name="hand" > 
         <input type="hidden" name="win" value="<%= win %>">
         <input type="hidden" name="total" value="<%= total %>">

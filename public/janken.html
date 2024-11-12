@@ -5,12 +5,29 @@
     <title>じゃんけん</title>
 </head>
 <body>
-    <form action="/janken">
+    <!-- <form action="/janken">
         <input type="text" name="hand" required>
         <label for="hand">何を出す？</label>
         <input type="submit" value="じゃんけん　ポン">
         <input type="hidden" name="win" value="0">
         <input type="hidden" name="total" value="0">
+    </form> -->
+    <form action="/janken">
+        <input type="radio" name="hand" id="radio1" value="1">
+        <label for="radio1">グー</label><br>
+        <input type="radio" name="hand" id="radio2" value="2">
+        <label for="radio2">チョキ</label><br>
+        <input type="radio" name="hand" id="radio3" value="3">
+        <label for="radio3">パー</label><br>
+        <label for="hand">何を出す？</label>
+        <input type="submit" value="じゃんけん　ポン">
+        <input type="hidden" name="win" value="0">
+        <input type="hidden" name="total" value="0">
     </form>
+    <form action="/luck">
+        <input type="hidden" name="win" value="0">
+        <input type="hidden" name="total" value="0">
+        <input type="submit" value="運勢">
+    </form>   
 </body>
 </html>

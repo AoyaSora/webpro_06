@@ -21,21 +21,37 @@ app.get("/icon", (req, res) => {
 app.get("/luck", (req, res) => {
   const num = Math.floor( Math.random() * 6 + 1 );
   let luck = '';
-  if( num==1 ) luck = '大吉';
-  else if( num==2 ) luck = '中吉';
-  console.log( 'あなたの運勢は' + luck + 'です' );
-  res.render( 'luck', {number:num, luck:luck} );
-});
-
-app.get("/janken", (req, res) => {
-  
-  let hand = req.query.hand;
+   let hand ='';
   let result = 0;
   //Number(数字)として取得
   let win = Number( req.query.win );
   let total = Number( req.query.total );
   //console.logは値の取得確認
-  console.log( {hand, win, total});
+  console.log( { win, total, hand, luck});
+  // 
+  if( num==1 ) luck = '大吉';
+  else if( num==2 ) luck = '中吉';
+  else if(num==3) luck = '吉';
+  else if(num ==4) luck = '小吉';
+  else if(num == 5 )luck = '凶';
+  else luck = '大凶';
+  console.log( 'あなたの運勢は' + luck + 'です' );
+  res.render( 'luck', {number:num, luck:luck, hand:hand, win: win, total: total} );
+  // 
+});
+
+app.get("/janken", (req, res) => {
+  let value = Number(req.query.hand);
+  let hand = '';
+  if(value == 1) hand = 'グー';
+  if(value == 2) hand = 'チョキ';
+  if(value == 3) hand = 'パー';
+
+  let result = '';
+  let rate = Number( req.query.rate );
+  //Number(数字)として取得
+  let win = Number( req.query.win );
+  let total = Number( req.query.total );
 
   const num = Math.floor( Math.random() * 3 + 1 );
   let cpu = '';
@@ -43,11 +59,11 @@ app.get("/janken", (req, res) => {
   else if( num==2 ) cpu = 'チョキ';
   else cpu = 'パー';
   // ここに勝敗の判定を入れる
-  if(hand == "ちんちん") {
-    hand = '汚い';
-    result = '品格の敗北';
-  }
-  else if(hand !='グー'&& hand != 'チョキ' && hand !='パー' ){
+  // if(hand == "ちんちん") {
+  //   hand = '汚い';
+  //   result = '品格の敗北';
+  // }else if(hand)...
+  if(hand !='グー'&& hand != 'チョキ' && hand !='パー' ){
     hand = ("グーかチョキかパーでしか反応できない");
     result = 'error';
   }
@@ -65,7 +81,8 @@ app.get("/janken", (req, res) => {
 
   // 今はダミーで人間の勝ちにしておいた(変更済み)
   let judgement = result;
-
+  //console.logは値の取得確認
+  console.log( {hand, win, total});
   //変数確認用
   const display = {
     your: hand,
@@ -74,7 +91,20 @@ app.get("/janken", (req, res) => {
     win: win,
     total: total
   }
-  res.render( 'janken', display );
+  res.render( 'janken', display );//jankenは送信するejsファイル
 });
+
+app.get("/prediction", (req,res) =>{
+  let win = Number( req.query.win );
+  let total = Number( req.query.total );
+  let hand = req.query.hand;
+  let rate = Math.floor((win/total) * 100);
+  let judge = '';
+  const num = Math.floor( Math.random() * 100 + 1 );
+  if(num < rate) judge='勝ち';
+  else judge='負け';
+  console.log( '勝つ確率は' + rate + 'です' );
+  res.render('prediction', {judge:judge, rate:rate, hand:hand, win: win, total: total});//ejsfileを選択するもんと送信する内容
+});//
 
 app.listen(8080, () => console.log("Example app listening on port 8080!"));

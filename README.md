@@ -1,45 +1,29 @@
-# webpro_06
-10月29日
+# Webpro_06
 ##　このプログラムについて
-ファイル名 | 説明
+このファイルはジャンケンの結果をejsファイルを用いて動的に表示させるためのプログラムである．
+
+## janken.htmlに関わるファイル一覧
+ファイル| 説明
 -|- 
 app5.js|プログラム本体
 public/janken.html|じゃんけんの開始画面
 views/janken.ejs|じゃんけんのテンプレートファイル
+views/luck.ejs|運勢のテンプレートファイル
+views/prediction.ejs|ジャンケン予想のテンプレートファイル
 
-## ファイル一覧
-```javascript
- console.log('Hello);
-```
 
-## 箇条書き
+## 起動方法
 1. ```node app5.js```でapp5.jsを起動する
-1. Webブラウザでlocalhost:8080/public/janken.htmlを検索する
-1. 自分の出す手を入力する
+1. Webブラウザでlocalhost:8080/public/janken.htmlを打ち込む
 
-## 図の描画
-```mermaid
- flowchart TD;
- 開始 --> 終了;
- なんでもいいんか --> 良さそう --> こんなんでも
- こんなんでも --> |本当に| いいんか --> 終わり
- こんなんでも --> |それはどうなの| ふーん --> 終わり;
- ```
+## 編集したファイルをGitにプッシュする方法
+1. 変更したファイルを保存する
+1. webpro_06ファイルのディレクトリに移動する
+1. ターミナルに以下のコマンドを打ち込む
+ ```git add .```
+ ```git commit -am '変更内容'```
+ ```git push```
 
 ## 凝ったフローチャート
-```mermaid
-flowchart TD;
 
-start["開始"];
-end1["終了"]
-if{"菱形になる"}
-win["勝ち"]
-loose["負け"]
-
-start --> if
-if --> |yes| win
-win --> end1
-if --> |no| loose
-loose --> end1
-```
 ### 小見出し
