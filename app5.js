@@ -4,24 +4,24 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use("/public", express.static(__dirname + "/public"));
 
-app.get("/hello1", (req, res) => {
-  const message1 = "Hello world";
-  const message2 = "Bon jour";
-  res.render('show', { greet1:message1, greet2:message2});
-});
+// app.get("/hello1", (req, res) => {
+//   const message1 = "Hello world";
+//   const message2 = "Bon jour";
+//   res.render('show', { greet1:message1, greet2:message2});
+// });
 
-app.get("/hello2", (req, res) => {
-  res.render('show', { greet1:"Hello world", greet2:"Bon jour"});
-});
+// app.get("/hello2", (req, res) => {
+//   res.render('show', { greet1:"Hello world", greet2:"Bon jour"});
+// });
 
-app.get("/icon", (req, res) => {
-  res.render('icon', { filename:"./public/Apple_logo_black.svg", alt:"Apple Logo"});
-});
+// app.get("/icon", (req, res) => {
+//   res.render('icon', { filename:"./public/Apple_logo_black.svg", alt:"Apple Logo"});
+// });
 
 app.get("/luck", (req, res) => {
   const num = Math.floor( Math.random() * 6 + 1 );
   let luck = '';
-   let hand ='';
+  let hand ='';
   let result = 0;
   //Number(数字)として取得
   let win = Number( req.query.win );
@@ -48,7 +48,7 @@ app.get("/janken", (req, res) => {
   if(value == 3) hand = 'パー';
 
   let result = '';
-  let rate = Number( req.query.rate );
+  //let rate = Number( req.query.rate );
   //Number(数字)として取得
   let win = Number( req.query.win );
   let total = Number( req.query.total );
@@ -106,5 +106,7 @@ app.get("/prediction", (req,res) =>{
   console.log( '勝つ確率は' + rate + 'です' );
   res.render('prediction', {judge:judge, rate:rate, hand:hand, win: win, total: total});//ejsfileを選択するもんと送信する内容
 });//
-
+ app.get("/question", (req,res) =>{
+  
+ });
 app.listen(8080, () => console.log("Example app listening on port 8080!"));
