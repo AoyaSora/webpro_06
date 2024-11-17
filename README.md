@@ -61,41 +61,41 @@ process --> give
 give --> wait
 ```
 ### じゃんけん機能
-- 受け取るurlとデータ
+-  受け取るurlとデータ
 htmlやejsファイルのform action="/janken"でデータを受けとり，app.get("/janken",...で処理される.
 自分の手であるhand，勝利数win，総試合数totalを受け取る.
 
-- 処理する内容
+-  処理する内容
 cpuの手をランダムで決め，それによるジャンケンの勝敗をjadgementに入れる.
 
-- 送信データ
+-  送信データ
 hand，cpu，win，total，judgement
 
-- 送信先
+-  送信先
 janken.ejs
 ### 運勢機能
-- 受け取るurl
+-  受け取るurl
 form action="/luck"で受け取り，app.get("/luck",...で処理される.
 
-- 処理する内容
+-  処理する内容
 1から6の数字をランダムで決め，それに応じた大凶などの運勢の結果をluckとする．
 
-- 送信データ
+-  送信データ
 number，luck，hand，win，total
 
-- 送信先
+-  送信先
 luck.ejs
 ### 予想機能
-- 受け取るurlとデータ
+-  受け取るurlとデータ
 form action="/prediction"で受けとり，app.get("./prediction",...で処理される.
 勝利数win，総試合数totalを受け取る.
 
-- 処理する内容
+-  処理する内容
 win/total x 100で勝率rateを算出する.
 1から100までの値をnumに代入し，rateとnumの数字の大きさを比べ，予想judgeが勝ち，負けのどちらかを決める.
 
-- 送信データ
+-  送信データ
 hand，win，total，judge，rate
 
-- 送信先
+-  送信先
 janken.ejs
