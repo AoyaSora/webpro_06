@@ -3,7 +3,6 @@ const express = require("express");
 const app = express();
 
 let bbs = [];  // 本来はDBMSを使用するが，今回はこの変数にデータを蓄える
-
 app.set('view engine', 'ejs');
 app.use("/public", express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
@@ -52,14 +51,14 @@ app.get("/janken", (req, res) => {
     judgement: judgement,
     win: win,
     total: total
-  }
+  };
   res.render( 'janken', display );
 });
 
 app.get("/get_test", (req, res) => {
   res.json({
     answer: 0
-  })
+  });
 });
 
 app.get("/add", (req, res) => {
@@ -90,19 +89,20 @@ app.post("/check", (req, res) => {
 
 app.post("/read", (req, res) => {
   // 本来はここでDBMSに問い合わせる
-  const start = Number( req.body.start );
+  const start = Number( req.body.start );//"今"htmlに表示されているbbsの数
   console.log( "read -> " + start );
-  if( start==0 ) res.json( {messages: bbs });
-  else res.json( {messages: bbs.slice( start )});
+  if( start==0 ) res.json( {messages: bbs });//まだ表示させていなかったら全てのbbsを送信
+  else res.json( {messages: bbs.slice( start )});//startから最後までのbbsを送信
 });
 
 app.post("/post", (req, res) => {
-  const name = req.body.name;
-  const message = req.body.message;
+  const name = req.body.name;//name=name
+  const message = req.body.message;//message=message
   console.log( [name, message] );
   // 本来はここでDBMSに保存する
-  bbs.push( { name: name, message: message } );
-  res.json( {number: bbs.length } );
+  
+  bbs.push( { name: name, message: message } );//bbsにnameとmessageを追加する
+  res.json( {number: bbs.length } );//numberをbbsの長さとして返す
 });
 
 app.get("/bbs", (req,res) => {
@@ -113,7 +113,7 @@ app.get("/bbs", (req,res) => {
 app.post("/bbs", (req,res) => {
     console.log("POST /BBS");
     res.json( {test: "POST /BBS"});
-})
+});
 
 app.get("/bbs/:id", (req,res) => {
     console.log( "GET /BBS/" + req.params.id );
