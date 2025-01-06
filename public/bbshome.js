@@ -190,6 +190,9 @@ document.querySelector('#history_button').addEventListener('click', () => {
                         his_area.href = `/public/test_bbs.html?topic=${encodeURIComponent(his)}&user_id=${encodeURIComponent(user_id)}`;
                         his_cover.appendChild( his_area );
                         histories.appendChild( his_cover );
+                        console.log(his_area);
+                        console.log(his_cover);
+                        console.log(histories);
                     }
                 });
             }

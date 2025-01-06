@@ -7,11 +7,20 @@
     <script src="./bbshome.js" defer></script>
     <link rel="stylesheet" href="./bbshome.css">
 </head>
-<body><p id="head">・話題一覧</p>
-    <div id="topics"></div>
-    <div>
+<body>
+    <div class="wrap">
+        <div class="topic_box">
+            <div id="head">・話題一覧</div>
+        <div id="topics"></div>
+        </div>
+        <div class="his_box">
+            <div id="head">・履歴一覧</div>
+            <div id="histories"></div>
+        </div>
+    </div>
+    <div class ="buttons">
         <!-- <label for="topic">話題</label> -->
-        <label for="name">話題：</label>
+        <label for="topic">話題：</label>
         <input type="text" id="topic">
         <button type="button" id="topic_post">送信</button>
         <button type="button" id="topic_update">更新</button>
@@ -19,12 +28,10 @@
     </div>
     <div id="user_info">
         <!-- label for="user_id" -->
-        <label>ユーザーid：</lavel>
+        <label for="user_id">ユーザーid：</label>
         <input type="text" id="user_id">
         <button type="button" id="id_button">作成</button>
     </div>
-    <div id="histories"></div>
-
 </body>
 </html>
 
