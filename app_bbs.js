@@ -2,7 +2,7 @@
 const express = require("express");
 const app = express();
 
-let bbs = {};  // {topic:[{name,message},{name,message}], }
+let bbs = {};  // {topic:[{name,message,user_id},{name,message, user_id}],topic: [{name,message,user_id},{name,message, user_id}]}
 
 app.set('view engine', 'ejs');
 app.use("/public", express.static(__dirname + "/public"));
@@ -29,6 +29,36 @@ app.post("/topic_check", (req, res) => {// appにある話題の数を返す
     res.json( { number: number});
 });
 
+// bbshomeからidを受け取って，書き込みした話題を返す，
+app.post("/history_check", (req, res) => {
+    const user_id = req.body.user_id;
+    const history = [];
+    for(let topic in bbs){
+        for(let mes of bbs[topic]){
+            if(mes.user_id === user_id){
+                history.push(topic); //===は厳密同じ値でも肩が違うとfalseになる
+                break;
+            }
+        }
+    }
+    res.json({ num: history.length });
+});
+app.post("/topic_history", (req, res) => {
+    const user_id = req.body.user_id;
+    const start = req.body.his_num;
+    const history = [];
+    console.log("user_id:"+user_id);
+    for(let topic in bbs){
+        for(let mes of bbs[topic]){
+            if(mes.user_id === user_id){
+                history.push(topic); //===は厳密同じ値でも肩が違うとfalseになる
+                break;
+            }
+        }
+    }
+    if( start == 0 ) res.json({ history: history });
+    else res.json( {history: history.slice(start) });
+});
 
 // これより下はBBS関係
 app.post("/check", (req, res) => {
@@ -51,9 +81,10 @@ app.post("/post", (req, res) => {
     const topic = req.body.topic;
     const name = req.body.name;//name=name
     const message = req.body.message;//message=message
+    const user_id = req.body.user_id;
     console.log( [topic, name, message] );
     // 本来はここでDBMSに保存する
-    bbs[topic].push( { name: name, message: message } );//bbsにnameとmessageを追加する
+    bbs[topic].push( { name: name, message: message, user_id:user_id } );//bbsにnameとmessageを追加する
     console.log(bbs[topic]);
     console.log(bbs[topic].length);
     res.json( {number: bbs[topic].length } );//numberをbbsの長さとして返す

@@ -4,6 +4,13 @@
     margin: 3px;/*投稿の文字幅*/
 }
 
+.his_cover {
+    border-bottom: 1px solid #c0c0c0;/*コメント間の線の色*/
+    /*background-color: #74992e;*/
+    margin: 3px;/*投稿の文字幅*/
+}
+
+
 /*
 .number {
     font-weight: bold;
@@ -21,9 +28,18 @@
 }
 /*.something <- jsファイルの変数名かね*/
 
-#bbs{
+#topics{
     height: 400px;
     overflow: scroll;
     width: 800px;
     /*background-color: aqua;*/
+}
+.hidden{
+    display: none;
+}
+
+#head{
+    border-bottom: 1px solid #c0c0c0;/*コメント間の線の色*/
+    background-color: #74992e;
+    width: 800px;
 }

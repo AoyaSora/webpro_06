@@ -5,13 +5,14 @@ const bbs = document.querySelector('#bbs'); // docment.querySelector('#<-idの�
 document.querySelector('#post').addEventListener('click', () => { // 投稿ボタンが押された時の処理
     const urlParams = new URLSearchParams(window.location.search);// url取得
     const topic = urlParams.get('topic');// urlの'パラメータ'の取得
+    const user_id = urlParams.get('user_id');
     const name = document.querySelector('#name').value;// //htmlのid=nameの値を読み込む
     const message = document.querySelector('#message').value;//htmlのid=nameの値を読み込む
-    console.log(topic,name,message);
+    console.log(topic, name, message);
     if(name != '' && message != ''){
         const params = {  // URL Encode　相手に送るためのパラメータ fecthに対するお知らせもある
             method: "POST",
-            body:  'topic='+topic+'&name='+name+'&message='+message,  //パラメータ
+            body:  'topic='+topic+'&name='+name+'&message='+message+'&user_id='+user_id,  //パラメータ
             // 'topic'+topicボディに追加したい
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -126,7 +127,7 @@ window.addEventListener('load', () => {
         for( let mes of response.messages){
             console.log(mes);
             let cover = document.createElement('div'); //一行
-            cover.className = ' cover';
+            cover.className = 'cover';
             let name_area = document.createElement('span');
             name_area.className = 'name';
             name_area.innerText = mes.name;
